@@ -12,4 +12,9 @@ def sum_list(input_list: List[float]) -> float:
     Args:
         input_list (list): list of floats to be added
     """
-    return float(sum(input_list))
+
+    sum = 0
+    for x in input_list:
+        sum += x
+
+    return sum
