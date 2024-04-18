@@ -2,10 +2,9 @@
 """
 7-to_kv.py
 """
-from typing import Union
+from typing import Union, Tuple
 
 
-def to_kv(k: str, v: Union[int, float]) -> tuple:
-    t = {k, v**2}
+def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
+    t: Tuple[str, float] = {k, float(v**2)}
     return t
-
