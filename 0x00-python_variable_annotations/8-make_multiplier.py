@@ -2,15 +2,14 @@
 """
 8-make_multiplier.py
 """
+from typing import Callable
 
 
-def make_multiplier(multiplier: float) -> function:
+def make_multiplier(multiplier: float) -> Callable[[float], float]:
     """
     Returns a function to be multiplied
 
     Args:
         a (float): float to be multiplied.
     """
-    def mul(a: float) -> float:
-        return a * multiplier
-    return multiplier
+    return lambda x: x * multiplier
