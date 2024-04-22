@@ -2,12 +2,15 @@
 """
 3-tasks.py
 """
-import asyncio
+from asyncio import Task, create_task
 
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-def task_wait_random(max_delay):
-    value = asyncio.create_task(wait_random(max_delay))
+def task_wait_random(max_delay: int) -> Task:
+    """
+    Returns tasks
+    """
+    value = create_task(wait_random(max_delay))
 
     return value
