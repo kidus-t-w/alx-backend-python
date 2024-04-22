@@ -2,15 +2,18 @@
 """
 1-concurrent_coroutines.py
 """
-import asyncio
+from typing import List
 
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def wait_n(n, max_delay):
-    wait_list = []
-    sort_list = []
-    for i in range(n):
+async def wait_n(n: int, max_delay: int) -> List:
+    """
+    Returns the delay time
+    """
+    wait_list: List = []
+    sort_list: List = []
+    for _ in range(n):
         value = await wait_random(max_delay)
         wait_list.append(value)
     for i in range(len(wait_list)):
