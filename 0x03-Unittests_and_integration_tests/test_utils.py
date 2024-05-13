@@ -3,6 +3,7 @@ import utils
 import unittest
 from parameterized import parameterized
 from unittest.mock import patch, Mock
+from typing import Dict
 
 
 class TestAccessNestedMap(unittest.TestCase):
