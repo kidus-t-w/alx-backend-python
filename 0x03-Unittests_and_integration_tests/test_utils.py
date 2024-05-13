@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import utils
+from utils import access_nested_map, get_json, memoize
 import unittest
 from parameterized import parameterized
 from unittest.mock import patch, Mock
@@ -18,7 +18,7 @@ class TestAccessNestedMap(unittest.TestCase):
     ])
     def test_access_nested_map(self, nested_map, path, expected):
         """Test accessing nested map with different paths"""
-        result = utils.access_nested_map(nested_map, path)
+        result = access_nested_map(nested_map, path)
         self.assertEqual(result, expected)
 
     @parameterized.expand([
@@ -27,7 +27,7 @@ class TestAccessNestedMap(unittest.TestCase):
     ])
     def test_access_nested_map_exception(self, nested_map, path, expected):
         with self.assertRaises(expected):
-            utils.access_nested_map(nested_map, path)
+            access_nested_map(nested_map, path)
 
 
 class TestGetJson(unittest.TestCase):
@@ -50,7 +50,7 @@ class TestGetJson(unittest.TestCase):
         """
         config = {'return_value.json.return_value': test_payload}
         with patch('requests.get', autospec=True, **config) as mockRequestGet:
-            self.assertEqual(utils.get_json(test_url), test_payload)
+            self.assertEqual(get_json(test_url), test_payload)
             mockRequestGet.assert_called_once_with(test_url)
 class TestMemoize(unittest.TestCase):
     """
