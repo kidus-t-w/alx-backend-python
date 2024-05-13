@@ -28,6 +28,7 @@ class TestAccessNestedMap(unittest.TestCase):
         with self.assertRaises(expected):
             utils.access_nested_map(nested_map, path)
 
+
 class TestGetJson(unittest.TestCase):
     @patch('requests.get')
     def test_get_json(self, mock_get):
@@ -39,14 +40,16 @@ class TestGetJson(unittest.TestCase):
 
         for url, payload in test_cases:
             with self.subTest(url=url, payload=payload):
-                # Set up the mock to return a Mock object with a json method that returns the payload
+                # Set up the mock to return a Mock object with a
+                # json method that returns the payload
                 mock_get.return_value = Mock()
                 mock_get.return_value.json.return_value = payload
 
                 # Call the function
                 result = utils.get_json(url)
 
-                # Test that the mocked get method was called exactly once with the url
+                # Test that the mocked get method was
+                # called exactly once with the url
                 mock_get.assert_called_once_with(url)
 
                 # Test that the output of get_json is equal to the payload
@@ -54,6 +57,7 @@ class TestGetJson(unittest.TestCase):
 
                 # Reset mock
                 mock_get.reset_mock()
+
 
 if __name__ == "__main__":
     unittest.main()
