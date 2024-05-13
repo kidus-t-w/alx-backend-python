@@ -30,17 +30,12 @@ class TestAccessNestedMap(unittest.TestCase):
 
 
 class TestGetJson(unittest.TestCase):
-    """
-    This is a test class for testing the function 'get_json' which is
-    used to send a GET request to a URL and return the JSON response.
-    """
+    """ Class for Testing Get Json """
+
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False})
     ])
-    def test_get_json(self, mock_get):
-        """Test cases as a list of tuples
-        """
     def test_get_json(self, test_url, test_payload):
         """ Test that utils.get_json returns the expected result."""
         config = {'return_value.json.return_value': test_payload}
