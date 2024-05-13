@@ -52,6 +52,8 @@ class TestGetJson(unittest.TestCase):
         with patch('requests.get', autospec=True, **config) as mockRequestGet:
             self.assertEqual(get_json(test_url), test_payload)
             mockRequestGet.assert_called_once_with(test_url)
+
+
 class TestMemoize(unittest.TestCase):
     """
     Defines test for memoize utility function
