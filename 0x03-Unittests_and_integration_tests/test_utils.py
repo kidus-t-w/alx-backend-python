@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 import utils
 import unittest
-from unittest import assertEqual, TestCase
 from parameterized import parameterized
 
 
-class TestAccessNestedMap(TestCase):
+class TestAccessNestedMap(unittest.TestCase):
     """
     Test class for testing the function 'access_nested_map'
     which is used to access a nested map with a key list.
