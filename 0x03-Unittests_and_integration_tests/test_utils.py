@@ -34,34 +34,21 @@ class TestGetJson(unittest.TestCase):
     This is a test class for testing the function 'get_json' which is
     used to send a GET request to a URL and return the JSON response.
     """
-    @patch('requests.get')
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False})
+    ])
     def test_get_json(self, mock_get):
         """Test cases as a list of tuples
         """
-        test_cases = [
-            ("http://example.com", {"payload": True}),
-            ("http://holberton.io", {"payload": False})
-        ]
-
-        for url, payload in test_cases:
-            with self.subTest(url=url, payload=payload):
-                # Set up the mock to return a Mock object with a
-                # json method that returns the payload
-                mock_get.return_value = Mock()
-                mock_get.return_value.json.return_value = payload
-
-                # Call the function
-                result = utils.get_json(url)
-
-                # Test that the mocked get method was
-                # called exactly once with the url
-                mock_get.assert_called_once_with(url)
-
-                # Test that the output of get_json is equal to the payload
-                self.assertEqual(result, payload)
-
-                # Reset mock
-                mock_get.reset_mock()
+    def test_get_json(self, test_url, test_payload):
+        """ Test that utils.get_json returns the expected result."""
+        config = {'return_value.json.return_value': test_payload}
+        patcher = patch('requests.get', **config)
+        mock = patcher.start()
+        self.assertEqual(get_json(test_url), test_payload)
+        mock.assert_called_once()
+        patcher.stop()
 
 
 if __name__ == "__main__":
